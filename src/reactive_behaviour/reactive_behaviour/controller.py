@@ -36,7 +36,7 @@ class VelocityController(Node):
         	self.t_time=time.time()
         	self.timer=self.timer*0.85
         	
-        y = self.right_distance -self.z + 0.15
+        y = self.right_distance -self.z + 0.1
         x = self.forward_distance - self.z
         
         if x > 0.14:
