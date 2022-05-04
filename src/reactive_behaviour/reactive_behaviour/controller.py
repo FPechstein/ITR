@@ -43,11 +43,15 @@ class VelocityController(Node):
         	msg.linear.x = 0.12
         	self.publisher.publish(msg)
         	self.get_logger().info('move no obj')
-        if x <= 0.14:
+        if x <= 0.14 and y>0.12:
         	self.flag=1
-        	msg.angular.z= 0.25
+        	msg.angular.z= -0.25
         	self.publisher.publish(msg)
         	self.get_logger().info('move cause objective infront')
+	if x <= 0.14 and y<0.12:
+		self.flag=1
+		msg.angular.z=0.25
+		self.publisher.publish
         if y <= 0.1 and self.flag != 1:
         	self.get_logger().info('right side too close')
         	msg.angular.z=0.04
@@ -60,8 +64,11 @@ class VelocityController(Node):
 
 
     def laser_cb(self, msg):
-        self.forward_distance =min(msg.ranges[:28]+msg.ranges[-28:])
+        self.forward_distance =min(msg.ranges[:30]+msg.ranges[-30:])
         self.right_distance= min(msg.ranges[:75]+msg.ranges[105:])
+	
+	
+	
 	 
 
 
