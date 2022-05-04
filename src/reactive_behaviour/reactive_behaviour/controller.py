@@ -45,16 +45,16 @@ class VelocityController(Node):
         	self.get_logger().info('move no obj')
         if x <= 0.14 and y>0.12:
         	self.flag=1
-        	msg.angular.z= -0.25
+        	msg.angular.z= -0.1
         	self.publisher.publish(msg)
         	self.get_logger().info('move cause objective infront')
 	if x <= 0.14 and y<0.12:
 		self.flag=1
-		msg.angular.z=0.25
+		msg.angular.z=0.1
 		self.publisher.publish
         if y <= 0.1 and self.flag != 1:
         	self.get_logger().info('right side too close')
-        	msg.angular.z=0.04
+        	msg.angular.z=0.06
         	self.publisher.publish(msg)
         	
         if y >0.15 and self.flag != 1:
