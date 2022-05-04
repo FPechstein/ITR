@@ -20,7 +20,7 @@ class VelocityController(Node):
         self.end_time=0
         self.flag=0
         self.z=0.3
-        self.timer=180
+        self.timer=160
         
     def timer_cb(self):
     	
@@ -32,9 +32,9 @@ class VelocityController(Node):
         self.get_logger().info(f'self.timer: {self.timer}')
         
         if self.end_time >= self.timer:
-        	self.z=self.z+0.25
+        	self.z=self.z+0.3
         	self.t_time=time.time()
-        	self.timer=self.timer*0.85
+        	self.timer=self.timer*0.8
         	
         y = self.right_distance -self.z + 0.1
         x = self.forward_distance - self.z
