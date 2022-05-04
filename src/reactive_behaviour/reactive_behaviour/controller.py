@@ -36,7 +36,7 @@ class VelocityController(Node):
         	self.t_time=time.time()
         	self.timer=self.timer*0.75
         	
-        y = self.right_distance -self.z + 0.1
+        y = self.right_distance -self.z + 0.05
         x = self.forward_distance - self.z
         
         if x > 0.14:
@@ -57,7 +57,7 @@ class VelocityController(Node):
         	msg.angular.z=0.04
         	self.publisher.publish(msg)
         	
-        if y >0.12 and y <0.3 and self.flag != 1:
+        if y >0.15 and self.flag != 1:
         	msg.angular.z= -0.2
         	self.get_logger().info('right side far but not too far away')
         	self.publisher.publish(msg)
@@ -65,7 +65,7 @@ class VelocityController(Node):
 
     def laser_cb(self, msg):
         self.forward_distance =min(msg.ranges[:30]+msg.ranges[-30:])
-        self.right_distance= min(msg.ranges[:75]+msg.ranges[105:])
+        self.right_distance= min(msg.ranges[:80]+msg.ranges[110:])
 	
 	
 	
