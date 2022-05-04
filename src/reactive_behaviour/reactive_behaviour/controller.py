@@ -39,11 +39,11 @@ class VelocityController(Node):
         y = self.right_distance -self.z + 0.15
         x = self.forward_distance - self.z
         
-        if x > 0.12:
+        if x > 0.14:
         	msg.linear.x = 0.12
         	self.publisher.publish(msg)
         	self.get_logger().info('move no obj')
-        if x <= 0.12:
+        if x <= 0.14:
         	self.flag=1
         	msg.angular.z= 0.25
         	self.publisher.publish(msg)
@@ -60,8 +60,8 @@ class VelocityController(Node):
 
 
     def laser_cb(self, msg):
-        self.forward_distance =min(msg.ranges[:20]+msg.ranges[-20:])
-        self.right_distance= min(msg.ranges[:85]+msg.ranges[95:])
+        self.forward_distance =min(msg.ranges[:28]+msg.ranges[-28:])
+        self.right_distance= min(msg.ranges[:75]+msg.ranges[105:])
 	 
 
 
