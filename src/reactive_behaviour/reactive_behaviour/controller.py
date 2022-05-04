@@ -20,7 +20,7 @@ class VelocityController(Node):
         self.end_time=0
         self.flag=0
         self.z=0.35
-        self.timer=160
+        self.timer=140
         
     def timer_cb(self):
     	
