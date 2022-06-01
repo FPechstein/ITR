@@ -28,6 +28,7 @@ class VelocityController(Node):
         self.counter=0
         self.positions=[]
         self.realdirection
+        self.goaldirection
         
     def timer_cb(self):
         msg = Twist()
@@ -44,6 +45,9 @@ class VelocityController(Node):
         	
         y = self.right_distance -self.z + 0.05
         x = self.forward_distance - self.z
+        
+        if self.realdirection!= 0:
+        	np.cos=(self.realdirection.x*self.goaldirection.x+self.real.direction.y*self.goaldirection.y)/(np.sqrt(self.realdirection.x**2+self.goaldirection.x**2)*np.sqrt(self.goaldirection.y**2+self.realdirection.y**2))
         
         if x > 0.14:
         	self.counter=self.counter+1
@@ -95,6 +99,8 @@ class VelocityController(Node):
         
         if counter <=0:
         	self.positions.clear()
+            
+        self.goaldirection=self.goal-self.position
         
         
         
