@@ -39,7 +39,7 @@ class VelocityController(Node):
     def timer_cb(self):
         msg = Twist()
         self.flag = 0
-        print(self.counter)
+        #print(self.counter)
         # self.get_logger().info({x})
         # self.t_time2=time.time()
         # self.end_time=self.t_time2-self.t_time
@@ -64,7 +64,7 @@ class VelocityController(Node):
 
 
         if self.x > 0.14 and self.drehen<=0:
-            print("komme ich hierhin?")
+            #print("komme ich hierhin?")
             self.counter = self.counter + 1
             msg.linear.x = 0.12
             msg.angular.z = 0.0
@@ -79,8 +79,8 @@ class VelocityController(Node):
             self.direction.clear()
         if  self.drehen>0 and self.flag==0:
             self.counter=0
-            print("winkel = ",self.winkel)
-            print("drehen = ",self.drehen)
+            #print("winkel = ",self.winkel)
+            #print("drehen = ",self.drehen)
             self.drehen=self.drehen-1
             
             msg.angular.z=0.25
