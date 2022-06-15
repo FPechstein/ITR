@@ -45,11 +45,12 @@ class VelocityController(Node):
         # self.end_time=self.t_time2-self.t_time
         # self.get_logger().info(f'self.timer: {self.timer}')
         self.winkel=-10
-        self.drehen=self.drehen-1
+
         if len(self.direction) >= 1:
             radiance=np.arccos( (self.direction[0] * self.goaldirection[0] + self.goaldirection[1] * self.direction[1]) / (np.sqrt(self.direction[0] ** 2 + self.direction[1] ** 2) * np.sqrt( self.goaldirection[0] ** 2 + self.goaldirection[1] ** 2)))
             self.winkel=np.degrees(radiance)
-            self.drehen=6
+            if self.winkel >25 and self.winkel <155:
+            	self.drehen=2
             self.direction.clear()
 
         # if self.end_time >= self.timer:
@@ -62,11 +63,12 @@ class VelocityController(Node):
         self.flag=0
 
 
-        if self.x > 0.14:
+        if self.x > 0.14 and self.drehen<=0:
             print("komme ich hierhin?")
             self.counter = self.counter + 1
             msg.linear.x = 0.12
             msg.angular.z = 0.0
+            self.flag=1
 
         # self.get_logger().info('move no obj')
         if self.x <= 0.14:
@@ -74,7 +76,8 @@ class VelocityController(Node):
             self.flag=1
             msg.linear.x = 0.0
             msg.angular.z = 0.25
-        if self.winkel>10 and self.flag==0 or self.drehen>0 and self.flag==0:
+            self.direction.clear()
+        if  self.drehen>0 and self.flag==0:
             self.counter=0
             print("winkel = ",self.winkel)
             print("drehen = ",self.drehen)
