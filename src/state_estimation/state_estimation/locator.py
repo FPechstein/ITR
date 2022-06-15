@@ -14,7 +14,7 @@ class LocatorNode(Node):
         self.create_subscription(Range, 'range', self.range_cb, 10)
         self.position_pub = self.create_publisher(PointStamped, 'position', 10)
         self.initialized = False
-        self.create_timer(0.1, self.timer_cb)
+        self.create_timer(0.5, self.timer_cb)
         self.get_logger().info('locator node started')
         self.rangesToGuess=np.array([])
         self.residium=np.array([])
